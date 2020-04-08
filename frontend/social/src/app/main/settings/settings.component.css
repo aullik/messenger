@@ -1,0 +1,15 @@
+.settings {
+  max-width: 50rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-grow: 1;
+  margin-top: 1rem;
+  border: 1px solid grey;
+}
+.mat-card {
+  background-color: transparent;
+  box-shadow: unset;
+}
+

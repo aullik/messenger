@@ -24,7 +24,7 @@ export class MessagesComponent implements OnInit {
       private domSanitizer: DomSanitizer
     ){
       this.matIconRegistry.addSvgIcon(
-            "unicorn",
+            "user-icon",
             this.domSanitizer.bypassSecurityTrustResourceUrl("assets/icon.svg")
           );
     }

@@ -9,29 +9,39 @@ import {FeedMessage} from 'src/app/model/feed-message';
 export class FeedComponent implements OnInit {
 
   messages: FeedMessage[] = [
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay'},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay'},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay'},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay'},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay'},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay'},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay'},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay'},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay'},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay'},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay'},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay'},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay'},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay'},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay'},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay'},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay'},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
+      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
     ];
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(JSON.stringify(this.messages));
   }
 
 }

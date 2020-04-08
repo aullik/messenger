@@ -51,13 +51,19 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
+import { SettingsComponent } from './settings/settings.component';
+import { ChatComponent } from './chat/chat.component';
+import { GroupComponent } from './group/group.component';
 
 @NgModule({
   declarations: [
     MainComponent,
     NavComponent,
     FeedComponent,
-    MessagesComponent
+    MessagesComponent,
+    SettingsComponent,
+    ChatComponent,
+    GroupComponent
    ],
   imports: [
       CommonModule,
