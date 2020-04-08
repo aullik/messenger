@@ -1,0 +1,23 @@
+.mat-card {
+  background-color: transparent;
+  box-shadow: unset;
+}
+mat-icon {
+  height: 100%;
+  width: auto;
+}
+.mat-card-title {
+  display: inline-block;
+  margin-right: 10px;
+}
+.mat-card-subtitle {
+  display: inline-block;
+}
+.timeStamp {
+  display:inline-block;
+  width: 100%;
+  text-align: right;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}

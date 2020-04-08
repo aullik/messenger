@@ -1,0 +1,21 @@
+.main {
+  display: flex;
+  padding-top: 3.5rem;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: stretch;
+  align-content: stretch;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: min-content;
+}
+.feed {
+  width: 100%;
+}
+
+@media only screen and (max-width: 1500px) {
+  .main {
+    flex-wrap: wrap;
+  }
+}
