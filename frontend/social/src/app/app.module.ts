@@ -11,6 +11,8 @@ import { LayoutModule } from '@angular/cdk/layout';
 
 import { HttpClientModule } from "@angular/common/http";
 
+import { DatabaseService } from "./service/database.service"
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,9 +25,11 @@ import { HttpClientModule } from "@angular/common/http";
     LoginModule,
     MainModule,
     LayoutModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    DatabaseService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
