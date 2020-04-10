@@ -55,6 +55,8 @@ import { SettingsComponent } from './settings/settings.component';
 import { ChatComponent } from './chat/chat.component';
 import { GroupComponent } from './group/group.component';
 
+import { DatabaseService } from '../service/database.service';
+
 @NgModule({
   declarations: [
     MainComponent,
@@ -70,7 +72,7 @@ import { GroupComponent } from './group/group.component';
       LayoutModule,
       DragDropModule,
       RouterModule,
-      MainRoutingModule,
+      MainRoutingModule
   ],
   exports: [
      A11yModule,
@@ -119,6 +121,7 @@ import { GroupComponent } from './group/group.component';
   ],
   providers: [
       { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
+    DatabaseService,
    ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
