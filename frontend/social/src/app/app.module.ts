@@ -12,22 +12,26 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { HttpClientModule } from "@angular/common/http";
 
 import { DatabaseService } from "./service/database.service"
+import { AuthConfigService } from './service/auth-config.service';
+import { AuthConfigModule } from './config/auth.config.module';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
-    RouterModule,
-    BrowserModule,
     AppRoutingModule,
+    AuthConfigModule,
     BrowserAnimationsModule,
+    BrowserModule,
+    HttpClientModule,
+    LayoutModule,
     LoginModule,
     MainModule,
-    LayoutModule,
-    HttpClientModule,
+    RouterModule
   ],
   providers: [
+    AuthConfigService,
     DatabaseService
   ],
   bootstrap: [AppComponent]

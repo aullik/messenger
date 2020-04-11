@@ -30,7 +30,7 @@ export class DatabaseService {
       }
     `;
       const res = await this.dbClient.newTxn().queryWithVars(query);
-      const ppl = res.data;
+      const ppl: any = res.data;
       ppl.people.forEach((person) => console.log(person.name));
   }
 }
