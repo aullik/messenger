@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
   selector: 'app-nav',
@@ -8,7 +9,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class NavComponent implements OnInit {
 
   @Output() navClick = new EventEmitter<number>();
-  constructor() { }
+  constructor(
+    private readonly oauthService: OAuthService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -24,6 +27,9 @@ export class NavComponent implements OnInit {
   }
   toggleSettings() {
     this.navClick.emit(3);
+  }
+  logout() {
+    this.oauthService.logOut();
   }
 
 }
