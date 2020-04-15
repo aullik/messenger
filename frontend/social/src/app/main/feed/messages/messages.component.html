@@ -1,9 +1,9 @@
-<mat-card>
+<mat-card *ngIf="content">
   <mat-card-header>
      <div mat-card-avatar class="example-header-image">
        <mat-icon svgIcon="user-icon"></mat-icon>
      </div>
-     <mat-card-title>{{content.nickName}}</mat-card-title>
+     <mat-card-title>{{content.nickname}}</mat-card-title>
      <mat-card-subtitle>{{content.user}}</mat-card-subtitle>
      <span class="example-spacer"></span>
      <span><p class="timeStamp">{{content.timeStamp}}</p></span>

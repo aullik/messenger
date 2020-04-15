@@ -11,7 +11,7 @@ import { DomSanitizer } from "@angular/platform-browser";
 export class MessagesComponent implements OnInit {
 
   @Input()
-  content: FeedMessage;
+  content: FeedMessage = null;
 
   name: string =  "Icons-mini-icon_user_(v).svg";
 

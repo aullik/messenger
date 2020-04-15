@@ -1,21 +1,21 @@
 export class FeedMessage {
   id: string;
   user: string;
-  nickName: string;
+  nickname: string;
   content: string;
   timeStamp: string;
   answerOfId?: string;
   constructor(
     id: string,
     user: string,
-    nickName: string,
+    nickname: string,
     content: string,
     timeStamp: string,
     answerOfId: string = null,
   ) {
     this.id = id;
     this.user = user;
-    this.nickName = nickName;
+    this.nickname = nickname;
     this.content = content;
     this.timeStamp = timeStamp;
     this.answerOfId = answerOfId;

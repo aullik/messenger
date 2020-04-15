@@ -10,7 +10,7 @@ export class NavComponent implements OnInit {
 
   @Output() navClick = new EventEmitter<number>();
   constructor(
-    private readonly oauthService: OAuthService
+    private readonly oauthService: OAuthService = null
   ) { }
 
   ngOnInit(): void {

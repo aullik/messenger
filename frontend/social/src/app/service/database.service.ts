@@ -103,6 +103,7 @@ export class DatabaseService {
         `id: string @index(exact) .
           nickname: string .
           name: string .
+          user: string .
           tenantId: string .
           content: string .
           timeStamp: string .`
@@ -160,12 +161,13 @@ export class DatabaseService {
       var query = `query mFrom() {
           mFrom(func: has(id)) {
             id
+            user
             content
             timeStamp
             answerOfId
             from {
+              name
               nickname
-              user
             }
          }
       }`;
@@ -176,7 +178,7 @@ export class DatabaseService {
       r.mFrom
         .filter(v => v.content)
         .map((m: any) =>
-          new FeedMessage(m.id, m.from.user, m.from.nickname, m.content, m.timeStamp, m.answerOfId)
+          new FeedMessage(m.id, m.from.name, m.user, m.content, m.timeStamp, m.answerOfId)
         ) as FeedMessage[]
     );
   }
