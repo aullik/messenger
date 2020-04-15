@@ -1,6 +1,8 @@
 branches:
   only:
   - master
+os: linux
+dist: xenial
 matrix:
   include:
     - language: node_js
@@ -25,8 +27,7 @@ matrix:
         - sh -e /etc/init.d/xvfb start
       before_script:
         - cd frontend/social
-        - yarn i angular-cli
-        - yarn i  karma
+        - yarn global add @angular/cli
         - yarn
         - yarn build
       script:
