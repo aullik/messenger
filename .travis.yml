@@ -10,7 +10,6 @@ matrix:
         - '13'
       dist: trusty
       cache:
-        yarn: true
         directories:
           - node_modules
       addons:
@@ -27,9 +26,7 @@ matrix:
         - sh -e /etc/init.d/xvfb start
       before_script:
         - cd frontend/social
-        - yarn
-        - yarn install
-        - yarn build
+        - npm install
       script:
-        - yarn run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+        - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
         - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
