@@ -27,8 +27,8 @@ matrix:
         - sh -e /etc/init.d/xvfb start
       before_script:
         - cd frontend/social
-        - yarn global add @angular/cli
         - yarn
+        - yarn install
         - yarn build
       script:
         - yarn run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
