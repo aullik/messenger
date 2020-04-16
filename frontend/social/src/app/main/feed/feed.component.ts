@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {FeedMessage} from 'src/app/model/feed-message';
 
 @Component({
@@ -8,36 +8,8 @@ import {FeedMessage} from 'src/app/model/feed-message';
 })
 export class FeedComponent implements OnInit {
 
-  messages: FeedMessage[] = [
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-      { user: "theGuy0001", nickName: 'Guy', content: 'First Message!!!!, yay', timeStamp : new Date().toTimeString()},
-    ];
+  @Input()
+  messages: FeedMessage[];
 
   constructor() { }
 

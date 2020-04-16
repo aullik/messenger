@@ -1,11 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { LoginModule } from './login/login.module';
 import { MainModule } from './main/main.module';
 import { LayoutModule } from '@angular/cdk/layout';
 
@@ -26,7 +25,6 @@ import { AuthConfigModule } from './config/auth.config.module';
     BrowserModule,
     HttpClientModule,
     LayoutModule,
-    LoginModule,
     MainModule,
     RouterModule
   ],
@@ -34,6 +32,7 @@ import { AuthConfigModule } from './config/auth.config.module';
     AuthConfigService,
     DatabaseService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 })
 export class AppModule { }

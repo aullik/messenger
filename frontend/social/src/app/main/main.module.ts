@@ -54,9 +54,9 @@ import {MatTreeModule} from '@angular/material/tree';
 import { SettingsComponent } from './settings/settings.component';
 import { ChatComponent } from './chat/chat.component';
 import { GroupComponent } from './group/group.component';
-
+import { HttpClientModule } from '@angular/common/http';
 import { DatabaseService } from '../service/database.service';
-
+import { OAuthService } from 'angular-oauth2-oidc';
 @NgModule({
   declarations: [
     MainComponent,
@@ -72,7 +72,8 @@ import { DatabaseService } from '../service/database.service';
       LayoutModule,
       DragDropModule,
       RouterModule,
-      MainRoutingModule
+      MainRoutingModule,
+      HttpClientModule
   ],
   exports: [
      A11yModule,
@@ -118,9 +119,11 @@ import { DatabaseService } from '../service/database.service';
       MatTreeModule,
       PortalModule,
     ScrollingModule,
+    OAuthService,
   ],
   providers: [
       { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },
+
     DatabaseService,
    ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
