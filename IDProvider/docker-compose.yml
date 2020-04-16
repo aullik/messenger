@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: "keycloak"
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - KEYCLOAK_IMPORT=/tmp/realm-export.json
+    command: ["-Djboss.http.port=8087"]
+    ports:
+      - 8087:8087
+    volumes:
+      - ${PWD}/realm-export.json:/tmp/realm-export.json

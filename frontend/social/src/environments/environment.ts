@@ -5,10 +5,10 @@
 export const environment = {
   production: false,
   envName: 'local',
-  enableAuth: false,
+  enableAuth: true,
   keycloak: {
     // Url of the Identity Provider
-    issuer: 'http://localhost:8080/auth/realms/SpringBootKeycloak',
+    issuer: 'http://localhost:8087/auth/realms/SpringBootKeycloak',
 
     // URL of the SPA to redirect the user to after login
     redirectUri: 'http://localhost:4200/',

@@ -1,7 +1,7 @@
 server:
   port: 8081
 keycloak:
-  auth-server-url: "http://localhost:8080/auth"
+  auth-server-url: "http://localhost:8087/auth"
   resource: "login-app"
   realm: "SpringBootKeycloak"
   ssl-required: "external"
