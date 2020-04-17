@@ -1,7 +1,0 @@
-version: '3.7'
-
-services:
-  keycloak:
-    volumes:
-      - ${PWD}/IDProvider/tmp:/tmp/
-      - ${PWD}/IDProvider/realm-db.json:/tmp/realm-import.json:ro
