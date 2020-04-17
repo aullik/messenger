@@ -7,9 +7,10 @@ services:
     environment:
       - KEYCLOAK_USER=admin
       - KEYCLOAK_PASSWORD=admin
-      - KEYCLOAK_IMPORT=/tmp/realm-export.json
+      - KEYCLOAK_IMPORT=/tmp/realm-import.json
     command: ["-Djboss.http.port=8087"]
     ports:
       - 8087:8087
     volumes:
-      - ${PWD}/realm-export.json:/tmp/realm-export.json
+      - ${PWD}/tmp:/tmp/
+      - ${PWD}/realm-db.json:/tmp/realm-import.json:ro
