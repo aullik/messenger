@@ -25,19 +25,14 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
   - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0 
-jobs:
-  include:
-    - language:
-      node_js: '13'
-      before_install:
-        - sh -e /etc/init.d/xvfb start
-      before_script:
-        - cd frontend/social
-        - npm install
-      script:
-        - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-        - docker-compose down
-    #- language: bash
-    #  script:
-    #    - ./start_db_cluster_and_monitor.sh
+  - sh -e /etc/init.d/xvfb start
+before_script:
+  - cd frontend/social
+  - npm install
+script:
+  - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+  - docker-compose down
+#- language: bash
+#  script:
+#    - ./start_db_cluster_and_monitor.sh
 
