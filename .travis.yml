@@ -23,13 +23,11 @@ before_install:
     # - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0 
 before_script:
-  - docker-compose -f database/docker-compose.yml up -d
+  - docker-compose build
+  - docker-compose up keycloak -d
   - cd frontend/social
   - npm install
 script:
   - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-  - cd ../../database && docker-compose down && cd ..
-#- language: bash
-#  script:
-#    - ./start_db_cluster_and_monitor.sh
+  - cd ../../ && docker-compose down 
 

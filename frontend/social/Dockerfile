@@ -4,7 +4,7 @@ COPY patch.js package.json yarn.lock ./
 ENV PATH="./node_modules/.bin:$PATH"
 RUN yarn install
 COPY . ./
-RUN ng build #RUN ng build --prod
+RUN ng build --prod
 
 FROM nginx:1.17
 COPY --from=build-stage /app/dist/social/ /usr/share/nginx/html

@@ -7,7 +7,7 @@ export const environment = {
     issuer: 'http://localhost:8087/auth/realms/SpringBootKeycloak',
 
     // URL of the SPA to redirect the user to after login
-    redirectUri: 'http://localhost:4200/',
+    redirectUri: 'http://localhost:80/',
 
     // The SPA's id.
     // The SPA is registerd with this id at the auth-serverß
