@@ -28,7 +28,7 @@ before_script:
   - npm install
 script:
   - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-  - cd ../database && docker-compose down && cd ..
+  - cd ../../database && docker-compose down && cd ..
 #- language: bash
 #  script:
 #    - ./start_db_cluster_and_monitor.sh
