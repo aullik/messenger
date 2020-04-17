@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   envName: 'local',
-  enableAuth: true,
+  enableAuth: false,
   keycloak: {
     // Url of the Identity Provider
     issuer: 'http://localhost:8087/auth/realms/SpringBootKeycloak',

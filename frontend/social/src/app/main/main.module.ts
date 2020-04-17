@@ -56,7 +56,7 @@ import { ChatComponent } from './chat/chat.component';
 import { GroupComponent } from './group/group.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DatabaseService } from '../service/database.service';
-import { OAuthService } from 'angular-oauth2-oidc';
+//import { OAuthService } from 'angular-oauth2-oidc';
 @NgModule({
   declarations: [
     MainComponent,
@@ -119,7 +119,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
       MatTreeModule,
       PortalModule,
     ScrollingModule,
-    OAuthService,
+    //OAuthService,
   ],
   providers: [
       { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } },

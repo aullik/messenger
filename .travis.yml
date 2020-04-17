@@ -5,33 +5,39 @@ os: linux
 dist: xenial
 env:
   - DOCKER_COMPOSE_VERSION=1.25.5
-matrix:
+language: node_js
+node_js:
+  - '13'
+cache:
+  directories:
+    - node_modules
+addons:
+apt:
+  sources:
+    - google-chrome
+  packages:
+    - google-chrome-stable
+    - google-chrome-beta
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+  - export CHROME_BIN=chromium-browser
+  - export DISPLAY=:99.0 
+jobs:
   include:
-    - language: node_js
-      node_js:
-        - '13'
-      dist: trusty
-      cache:
-        directories:
-          - node_modules
-      addons:
-      apt:
-        sources:
-          - google-chrome
-        packages:
-          - google-chrome-stable
-          - google-chrome-beta
+    - language:
+      node_js: '13'
       before_install:
-        - sudo rm /usr/local/bin/docker-compose
-        - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-        - chmod +x docker-compose
-        - sudo mv docker-compose /usr/local/bin
-        - docker-compose -f database/docker-compose.yml up -d
-        - export CHROME_BIN=chromium-browser
-        - export DISPLAY=:99.0
         - sh -e /etc/init.d/xvfb start
       before_script:
         - cd frontend/social
         - npm install
       script:
         - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+        - docker-compose down
+    #- language: bash
+    #  script:
+    #    - ./start_db_cluster_and_monitor.sh
+
