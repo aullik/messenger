@@ -24,7 +24,7 @@ before_install:
   - export DISPLAY=:99.0 
 before_script:
   - docker-compose build
-  - docker-compose up -d keycloak
+  - docker-compose up -d keycloak zero alpha
   - cd frontend/social
   - npm install
 script:
