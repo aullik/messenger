@@ -1,0 +1,69 @@
+version: '3.7'
+services:
+  web:
+    build: ./frontend/social/.
+    ports: 
+    - 80:80
+    restart: on-failure
+    depends_on:
+      - "keycloak"
+      - "zero"
+  prometheus:
+    build: ./metric/
+    container_name: "prometheus"
+    ports:
+      - "9090:9090"
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    depends_on:
+      - "cadvisor"
+    restart: on-failure
+  cadvisor:
+    image: google/cadvisor:latest
+    container_name: "cadvisor"
+    ports:
+      - "8082:8080"
+    volumes:
+      - "/:/rootfs:ro"
+      - "/var/run:/var/run:rw"
+      - "/sys:/sys:ro"
+      - "/var/lib/docker/:/var/lib/docker:ro"
+    restart: on-failure
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: "keycloak"
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - KEYCLOAK_IMPORT=/tmp/realm-import.json
+    command: ["-Djboss.http.port=8087"]
+    ports:
+      - 8087:8087
+    volumes:
+      - ${PWD}/IDProvider/tmp:/tmp/
+      - ${PWD}/IDProvider/realm-db.json:/tmp/realm-import.json:ro
+    restart: on-failure
+  zero:
+    image: dgraph/dgraph:latest
+    volumes:
+      - /tmp/data:/dgraph
+    ports:
+      - 5080:5080
+      - 6080:6080
+    restart: on-failure
+    command: dgraph zero --my=zero:5080
+  alpha:
+    image: dgraph/dgraph:latest
+    volumes:
+      - /tmp/data:/dgraph
+    ports:
+      - 8080:8080
+      - 9080:9080
+    restart: on-failure
+    command: dgraph alpha --my=alpha:7080 --lru_mb=2048 --zero=zero:5080
+  ratel:
+    image: dgraph/dgraph:latest
+    ports:
+      - 8000:8000
+    command: dgraph-ratel
+    restart: on-failure
