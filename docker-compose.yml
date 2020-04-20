@@ -2,6 +2,12 @@ version: '3.7'
 services:
   web:
     build: ./frontend/social/.
+    environment:
+      - ENABLE_AUTH=false
+      - ISSUER_URL=http://localhost:8087/auth/realms/SpringBootKeycloak
+      - REDIR_URL=http://localhost:80/
+      - CLIENT_ID=login-app
+      - DB_URL=http://localhost:8080
     ports: 
     - 80:80
     restart: on-failure

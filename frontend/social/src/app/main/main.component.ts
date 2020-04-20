@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../service/database.service';
-import {FeedMessage} from 'src/app/model/feed-message';
+import { FeedMessage } from 'src/app/model/feed-message';
+import { environment } from '../../environments/environment';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',

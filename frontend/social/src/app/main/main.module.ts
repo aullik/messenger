@@ -57,6 +57,7 @@ import { GroupComponent } from './group/group.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DatabaseService } from '../service/database.service';
 //import { OAuthService } from 'angular-oauth2-oidc';
+import { environment } from '../../environments/environment';
 @NgModule({
   declarations: [
     MainComponent,
@@ -73,9 +74,7 @@ import { DatabaseService } from '../service/database.service';
       DragDropModule,
       RouterModule,
       MainRoutingModule,
-      HttpClientModule
-  ],
-  exports: [
+      HttpClientModule,
      A11yModule,
       ClipboardModule,
       CdkStepperModule,
@@ -119,6 +118,8 @@ import { DatabaseService } from '../service/database.service';
       MatTreeModule,
       PortalModule,
     ScrollingModule,
+  ],
+  exports: [
     //OAuthService,
   ],
   providers: [
