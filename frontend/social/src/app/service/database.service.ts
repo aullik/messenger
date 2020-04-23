@@ -6,12 +6,14 @@ import * as DB_ERROR from 'dgraph-js-http/lib/errors';
 import * as DbType from 'dgraph-js-http/lib/types';
 import {User} from '../model/user';
 import { FeedMessage, DbMessage } from '../model/feed-message';
+import { environment } from '../../environments/environment'
+
 @Injectable({
   providedIn: 'root'
 })
 export class DatabaseService {
   // database access variables
-  private clientStub: DgraphClientStub = new DgraphClientStub("http://localhost:8080",false,);
+  private clientStub: DgraphClientStub = new DgraphClientStub(environment.dbUrl,false,);
   private dbClient: DgraphClient;
 
   // TODO: remove test data

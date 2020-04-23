@@ -1,18 +1,15 @@
 export const environment = {
   production: true,
   envName: 'local',
-  enableAuth: true,
+  enableAuth: '${ENABLE_AUTH}',
   keycloak: {
     // Url of the Identity Provider
-    issuer: 'http://localhost:8087/auth/realms/SpringBootKeycloak',
-
+    issuer: '${ISSUER_URL}',
     // URL of the SPA to redirect the user to after login
-    redirectUri: 'http://localhost:80/',
-
+    redirectUri: '${REDIR_URL}',
     // The SPA's id.
     // The SPA is registerd with this id at the auth-serverß
-    clientId: 'login-app',
-
+    clientId: '${CLIENT_ID}',
     responseType: 'code',
     // set the scope for the permissions the client should request
     // The first three are defined by OIDC.
@@ -25,5 +22,6 @@ export const environment = {
     // at_hash is not present in JWT token
     showDebugInformation: true,
     disableAtHashCheck: true
-  }
+  },
+  dbUrl: '${DB_URL}',
 };
