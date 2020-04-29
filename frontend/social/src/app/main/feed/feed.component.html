@@ -1,6 +1,11 @@
 <div class="feed-view">
-<ng-template ngFor let-message [ngForOf]="messages">
+<!-- <ng-template ngFor let-message [ngForOf]="messages" class="example-viewport">
   <mat-divider class="divider"></mat-divider>
   <app-messages class="messages" [content]="message"></app-messages>
-</ng-template>
+</ng-template> -->
+  <cdk-virtual-scroll-viewport itemSize="50"  class="example-viewport">
+    <div *cdkVirtualFor="let message of messages" class="example-item">
+      <app-messages class="messages" [content]="message"></app-messages>
+    </div>
+  </cdk-virtual-scroll-viewport>
 </div>

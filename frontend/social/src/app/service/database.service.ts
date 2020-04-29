@@ -1,3 +1,4 @@
+import { MessageMedia } from './../model/media';
 import { Injectable } from '@angular/core';
 import {DgraphClient} from 'dgraph-js-http/lib/client';
 import {DgraphClientStub} from 'dgraph-js-http/lib/clientStub';
@@ -7,6 +8,7 @@ import * as DbType from 'dgraph-js-http/lib/types';
 import {User} from '../model/user';
 import { FeedMessage, DbMessage } from '../model/feed-message';
 import { environment } from '../../environments/environment'
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,19 +21,19 @@ export class DatabaseService {
   // TODO: remove test data
   private tenantDump : string[] = ['01','02','03','04'];
   private userDump: User[] = [
-    { id: '01', nickname: 'ddd', name: 'Random user 0', tenantId: this.tenantDump[0] },
-    { id: '02', nickname: 'sda', name: 'Random user 1', tenantId: this.tenantDump[0] },
-    { id: '03', nickname: 'vcbvb', name: 'User 2', tenantId: this.tenantDump[0] },
-    { id: '04', nickname: 'laösdlö', name: 'User 3', tenantId: this.tenantDump[0] },
-    { id: '05', nickname: 'epw', name: 'User 1', tenantId: this.tenantDump[1] },
-    { id: '06', nickname: 'iqwe', name: 'User 4', tenantId: this.tenantDump[1] },
-    { id: '07', nickname: 'yxc', name: 'User 10202', tenantId: this.tenantDump[1] },
-    { id: '08', nickname: 'vcn', name: 'User 5', tenantId: this.tenantDump[2] },
-    { id: '09', nickname: 'qwef', name: 'Rand user', tenantId: this.tenantDump[2] },
-    { id: '10', nickname: 'blövc', name: 'User 6', tenantId: this.tenantDump[3] },
-    { id: '11', nickname: 'fgd', name: 'User 8', tenantId: this.tenantDump[3] },
-    { id: '12', nickname: 'vckl', name: 'User 7', tenantId: this.tenantDump[3] },
-    { id: '13', nickname: 'qwer', name: 'User 9', tenantId: this.tenantDump[3] },
+    { id: '01', nickname: 'ddd', name: 'Random user 0', tenantId: this.tenantDump[0],icon: "assets/icon.svg"},
+    { id: '02', nickname: 'sda', name: 'Random user 1', tenantId: this.tenantDump[0],icon: "assets/icon.svg"},
+    { id: '03', nickname: 'vcbvb', name: 'User 2', tenantId: this.tenantDump[0] ,icon: "assets/icon.svg"},
+    { id: '04', nickname: 'laösdlö', name: 'User 3', tenantId: this.tenantDump[0] ,icon: "assets/icon.svg"},
+    { id: '05', nickname: 'epw', name: 'User 1', tenantId: this.tenantDump[1] ,icon: "assets/icon.svg"},
+    { id: '06', nickname: 'iqwe', name: 'User 4', tenantId: this.tenantDump[1] ,icon: "assets/icon.svg"},
+    { id: '07', nickname: 'yxc', name: 'User 10202', tenantId: this.tenantDump[1] ,icon: "assets/icon.svg"},
+    { id: '08', nickname: 'vcn', name: 'User 5', tenantId: this.tenantDump[2] ,icon: "assets/icon.svg"},
+    { id: '09', nickname: 'qwef', name: 'Rand user', tenantId: this.tenantDump[2] ,icon: "assets/icon.svg"},
+    { id: '10', nickname: 'blövc', name: 'User 6', tenantId: this.tenantDump[3] ,icon: "assets/icon.svg"},
+    { id: '11', nickname: 'fgd', name: 'User 8', tenantId: this.tenantDump[3] ,icon: "assets/icon.svg"},
+    { id: '12', nickname: 'vckl', name: 'User 7', tenantId: this.tenantDump[3] ,icon: "assets/icon.svg"},
+    { id: '13', nickname: 'qwer', name: 'User 9', tenantId: this.tenantDump[3] ,icon: "assets/icon.svg"},
     ];
   private messageDump: DbMessage[] = [
     {id: '14', user: this.userDump[0].nickname, content: 'test content !!!!', timeStamp: new Date().toTimeString()},
@@ -71,8 +73,16 @@ export class DatabaseService {
     {id: '48', user: this.userDump[12].nickname, content: 'test content !!!!', timeStamp: new Date().toTimeString()},
     ];
   private feedDump: FeedMessage[] = this.messageDump.map(m =>  {
-      var u = this.userDump.filter(u => u.nickname === m.user)[0];
-      return new FeedMessage(m.id, u.name, u.nickname, m.content, m.timeStamp);
+      const u = this.userDump.filter(u => u.nickname === m.user)[0];
+      return new FeedMessage(
+        m.id, u.name,
+        u.nickname,
+        m.content,
+        [
+          new MessageMedia(null,'name1',null,new Date().toTimeString(),"https://upload.wikimedia.org/wikipedia/commons/c/cb/Broadway_tower_edit.jpg",null),
+          new MessageMedia(null,'name2',null,new Date().toTimeString(),"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/HumphreysPeak.jpg/800px-HumphreysPeak.jpg",null)
+        ],
+        m.timeStamp);
     }).filter(m => m !== null);
 
   constructor() {
@@ -159,30 +169,33 @@ export class DatabaseService {
 
   async getFeed(): Promise<FeedMessage[]> {
     // create callback function
-    var req = async (txn: Txn) => {
-      var query = `query mFrom() {
-          mFrom(func: has(id)) {
-            id
-            user
-            content
-            timeStamp
-            answerOfId
-            from {
-              name
-              nickname
-            }
-         }
-      }`;
-      var res = await txn.query(query);
-      return res;
-    };
-    return this.transition(req).then((r) =>
-      r.mFrom
-        .filter(v => v.content)
-        .map((m: any) =>
-          new FeedMessage(m.id, m.from.name, m.user, m.content, m.timeStamp, m.answerOfId)
-        ) as FeedMessage[]
-    );
+    // var req = async (txn: Txn) => {
+    //   var query = `query mFrom() {
+    //       mFrom(func: has(id)) {
+    //         id
+    //         user
+    //         content
+    //         timeStamp
+    //         answerOfId
+    //         from {
+    //           name
+    //           nickname
+    //         }
+    //      }
+    //   }`;
+    //   var res = await txn.query(query);
+    //   return res;
+    // };
+    // return this.transition(req).then((r) =>
+    //   r.mFrom
+    //     .filter(v => v.content)
+    //     .map((m: any) =>
+    //       new FeedMessage(m.id, m.from.name, m.user, m.content, m.timeStamp, m.answerOfId)
+    //     ) as FeedMessage[]
+    // );
+    return new Promise((resolve,rejects) => {
+      resolve(this.feedDump)
+    })
   }
 
   private cartesianProductOf(objList: any[][]) {
@@ -196,5 +209,11 @@ export class DatabaseService {
   private getUser(nickname: string, userList: any[][]) {
     var users = userList.filter(u => u[0].nickname === nickname);
     return users.length > 0 ? users[0] : null;
+  }
+
+  public getAllUser(): Promise<User[]> {
+    return new Promise((resolve,rejects) => {
+      resolve(this.userDump)
+    })
   }
 }

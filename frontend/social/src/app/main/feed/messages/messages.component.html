@@ -1,14 +1,20 @@
 <mat-card *ngIf="content">
   <mat-card-header>
      <div mat-card-avatar class="example-header-image">
-       <mat-icon svgIcon="user-icon"></mat-icon>
+      <img [src]="getPic(content.nickname)">
      </div>
-     <mat-card-title>{{content.nickname}}</mat-card-title>
+     <mat-card-title >{{content.nickname}}</mat-card-title>
      <mat-card-subtitle>{{content.user}}</mat-card-subtitle>
      <span class="example-spacer"></span>
      <span><p class="timeStamp">{{content.timeStamp}}</p></span>
   </mat-card-header>
   <mat-card-content>
     <p>{{content.content}}</p>
+    <div *ngIf="content.media">
+    <ng-container *ngFor="let m of content.media">
+      <img class="media" *ngIf="m.content" [src]="getMedia(m.content)"> 
+      <img class="media" *ngIf="m.url" [src]="getMedia(m.url)"> 
+    </ng-container>
+  </div>
   </mat-card-content>
 </mat-card>

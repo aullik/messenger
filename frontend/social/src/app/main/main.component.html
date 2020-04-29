@@ -1,7 +1,10 @@
-<app-nav (navClick)="onClick($event)"></app-nav>
-<div class="main mat-app-background">
-  <ng-container *ngIf="groupSelected"><app-group class="feed"></app-group></ng-container>
-  <ng-container *ngIf="settingsSelected"><app-settings class="feed"></app-settings></ng-container>
-  <ng-container *ngIf="chatSelected"><app-chat class="feed"></app-chat></ng-container>
-      <app-feed [messages]="messageFeed" class="feed"></app-feed>
+<div class="mat-app-background">
+  <app-nav (navClick)="onClick($event)"></app-nav>
+  <div class="main">
+    <app-new-message class="feed"></app-new-message>
+    <ng-container *ngIf="number === 1"><app-group class="feed"></app-group></ng-container>
+    <ng-container *ngIf="number === 2"><app-settings class="feed"></app-settings></ng-container>
+    <ng-container *ngIf="number === 3"><app-chat class="feed"></app-chat></ng-container>
+    <app-feed class="feed"></app-feed>
   </div>
+</div>

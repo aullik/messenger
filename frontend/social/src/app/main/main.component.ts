@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { DatabaseService } from '../service/database.service';
+import { FeedComponent } from './feed/feed.component';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FeedMessage } from 'src/app/model/feed-message';
 import { environment } from '../../environments/environment';
 @Component({
@@ -9,34 +9,18 @@ import { environment } from '../../environments/environment';
 })
 export class MainComponent implements OnInit {
 
-  groupSelected = false;
-  settingsSelected = false;
-  chatSelected = false;
+  @ViewChild(FeedComponent) private feedView: FeedComponent;
 
-  messageFeed: FeedMessage[] = [];
+  number= 0;
 
-  constructor(private db: DatabaseService) { }
+  constructor() { }
 
   ngOnInit(): void {
-      this.db.connect();
   }
 
   onClick(i: number) {
-    // close all except the feed
-    if (i === 0) {
-      this.settingsSelected = false;
-      this.groupSelected = false;
-      this.chatSelected = false;
-      this.db.getFeed()
-        .then(
-          (v) => {
-            this.messageFeed = v;
-            console.log(JSON.stringify(v)) }
-        );
-    }
-    if (i === 1) { this.chatSelected = !this.chatSelected; }
-    if (i === 2) { this.groupSelected = !this.groupSelected; }
-    if (i === 3) { this.settingsSelected = !this.settingsSelected; }
+    i == 0 ? this.feedView.refresh() : null;
+    this.number = i;
   }
 
 }

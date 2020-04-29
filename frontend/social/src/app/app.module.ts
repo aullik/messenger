@@ -1,3 +1,4 @@
+import { BackendService } from './service/backend.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -118,6 +119,7 @@ import { AuthConfigModule } from './config/auth.config.module';
   providers: [
     AuthConfigService,
     DatabaseService,
+    BackendService
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],

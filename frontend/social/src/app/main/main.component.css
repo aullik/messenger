@@ -1,3 +1,7 @@
+.mat-app-background {
+  min-height: 100%;
+}
+
 .main {
   display: flex;
   padding-top: 3.5rem;
@@ -10,8 +14,14 @@
   flex-shrink: 1;
   flex-basis: min-content;
 }
+
 .feed {
   width: 100%;
+  margin: 1rem; 
+}
+
+.message {
+  max-width: 600px;
 }
 
 @media only screen and (max-width: 1500px) {
