@@ -41,6 +41,9 @@ export class AuthConfigService {
           this.oauthService.loadDiscoveryDocumentAndLogin().then(isLoggedIn => {
             if (isLoggedIn) {
               this.oauthService.setupAutomaticSilentRefresh();
+              // for (let i = 0; i <= localStorage.length; i++) {
+              //   console.log(localStorage.key(i) + " : " + JSON.stringify(localStorage.getItem(localStorage.key(i))));
+              // }
               resolveFn();
             } else {
               this.oauthService.initImplicitFlow();

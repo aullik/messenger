@@ -4,6 +4,7 @@ branches:
 os: linux
 dist: xenial
 services:
+  - docker
   - xvfb
 env:
   - DOCKER_COMPOSE_VERSION=1.25.5
@@ -23,11 +24,11 @@ before_install:
     # - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0 
 before_script:
-  - docker-compose build
   - docker-compose up -d keycloak zero alpha
   - cd frontend/social
   - npm install
 script:
   - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+  - ./build_and_push_travis.sh
   - cd ../../ && docker-compose down 
 

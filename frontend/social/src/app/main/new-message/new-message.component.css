@@ -1,3 +1,14 @@
+.message-form {
+  /* display: flex;
+  flex-grow: 1;
+  flex-direction:column; 
+  margin: 1rem; */
+  overflow-y: auto;
+  border: 1px solid grey;
+  /* margin-left: auto;
+  margin-right: auto;
+  max-width: 50rem; */
+}
 .mat-card {
   background-color: transparent;
   box-shadow: unset;
@@ -21,16 +32,12 @@ mat-icon {
 .example-spacer {
   flex: 1 1 auto;
 }
-.media {
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 8px;
-  background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  max-width: 500px;
-  max-height: 500px;
-  width: auto;
-  height: auto;
-  display: block;
-  margin-top: 1rem;
+.example-full-width {
+  width: 100%;
+}
+ul,  
+li {  
+      margin: 0;  
+      padding: 0;  
+      list-style: none;  
 }

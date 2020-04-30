@@ -1,3 +1,5 @@
+import { BackendService } from './../../../service/backend.service';
+import { User } from './../../../model/user';
 import { Component, OnInit, Input } from '@angular/core';
 import { FeedMessage } from 'src/app/model/feed-message';
 import { MatIconRegistry } from "@angular/material/icon";
@@ -11,25 +13,23 @@ import { DomSanitizer } from "@angular/platform-browser";
 export class MessagesComponent implements OnInit {
 
   @Input()
-  content: FeedMessage = null;
-
-  name: string =  "Icons-mini-icon_user_(v).svg";
-
-  get absUrl() {
-    return "src/assets/" + this.name;
-  }
+  content: FeedMessage;
 
   constructor(
       private matIconRegistry: MatIconRegistry,
-      private domSanitizer: DomSanitizer
-    ){
-      this.matIconRegistry.addSvgIcon(
-            "user-icon",
-            this.domSanitizer.bypassSecurityTrustResourceUrl("assets/icon.svg")
-          );
-    }
+      private domSanitizer: DomSanitizer,
+      private backend: BackendService
+    ){  }
 
   ngOnInit(): void {
+  }
+
+  getPic(name: string) {
+    return this.domSanitizer.bypassSecurityTrustUrl(this.backend.getUserByName(name).icon);
+  }
+
+  getMedia(path: string) {
+    return this.domSanitizer.bypassSecurityTrustUrl(path);
   }
 
 }

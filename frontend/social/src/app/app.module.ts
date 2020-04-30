@@ -1,3 +1,4 @@
+import { BackendService } from './service/backend.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -51,9 +52,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from './../environments/environment';
 import { MainModule } from './main/main.module';
 import { LayoutModule } from '@angular/cdk/layout';
-
 import { HttpClientModule } from "@angular/common/http";
-
 import { DatabaseService } from "./service/database.service"
 import { AuthConfigService } from './service/auth-config.service';
 import { AuthConfigModule } from './config/auth.config.module';
@@ -118,6 +117,7 @@ import { AuthConfigModule } from './config/auth.config.module';
   providers: [
     AuthConfigService,
     DatabaseService,
+    BackendService,
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],

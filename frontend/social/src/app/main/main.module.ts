@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { MainComponent } from './main.component';
 import { RouterModule } from '@angular/router';
 import { LayoutModule } from '@angular/cdk/layout';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { MainRoutingModule } from './main-routing.module';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
@@ -58,6 +58,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DatabaseService } from '../service/database.service';
 //import { OAuthService } from 'angular-oauth2-oidc';
 import { environment } from '../../environments/environment';
+import { NewMessageComponent } from './new-message/new-message.component';
 @NgModule({
   declarations: [
     MainComponent,
@@ -66,7 +67,8 @@ import { environment } from '../../environments/environment';
     MessagesComponent,
     SettingsComponent,
     ChatComponent,
-    GroupComponent
+    GroupComponent,
+    NewMessageComponent
    ],
   imports: [
       CommonModule,
@@ -118,6 +120,8 @@ import { environment } from '../../environments/environment';
       MatTreeModule,
       PortalModule,
     ScrollingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     //OAuthService,
