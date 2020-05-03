@@ -1,6 +1,9 @@
 plugins {
     id("java")
     id("maven-publish")
+    kotlin("jvm") version "1.3.61"
+    id("org.springframework.boot") version "2.2.6.RELEASE"
+    kotlin("plugin.spring") version "1.3.61"
 }
 
 repositories {
@@ -18,6 +21,9 @@ sourceSets {
 }
 
 dependencies {
+    implementation(kotlin("stdlib-jdk8"))
+    implementation(kotlin("reflect"))
+
     implementation("org.springframework.boot:spring-boot-starter-groovy-templates:2.2.6.RELEASE")
     implementation("org.springframework.boot:spring-boot-starter-security:2.2.6.RELEASE")
     implementation("org.springframework.boot:spring-boot-starter-web:2.2.6.RELEASE")
@@ -40,6 +46,14 @@ java {
 }
 
 
-tasks.withType<JavaCompile> {
-    options.encoding = ("UTF-8")
+tasks{
+    compileKotlin {
+        kotlinOptions.jvmTarget = "1.8"
+    }
+    compileTestKotlin {
+        kotlinOptions.jvmTarget = "1.8"
+    }
+    compileJava {
+        options.encoding = "UTF-8"
+    }
 }
