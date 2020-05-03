@@ -1,54 +1,51 @@
-package com.cloudapp.messenger.config;
+package com.cloudapp.messenger.config
 
-import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
-import org.keycloak.adapters.springsecurity.KeycloakSecurityComponents;
-import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationProvider;
-import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper;
-import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
-import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy;
-import org.springframework.security.core.session.SessionRegistryImpl;
-
+import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver
+import org.keycloak.adapters.springsecurity.KeycloakSecurityComponents
+import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.ComponentScan
+import org.springframework.context.annotation.Configuration
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
+import org.springframework.security.config.annotation.web.builders.HttpSecurity
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper
+import org.springframework.security.core.session.SessionRegistryImpl
+import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy
+import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy
 
 @Configuration
 @EnableWebSecurity
-@ComponentScan(basePackageClasses = KeycloakSecurityComponents.class)
-class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
- 
+@ComponentScan(basePackageClasses = [KeycloakSecurityComponents::class])
+class SecurityConfig : KeycloakWebSecurityConfigurerAdapter() {
     @Autowired
-    public void configureGlobal(
-      AuthenticationManagerBuilder auth) throws Exception {
-  
-        KeycloakAuthenticationProvider keycloakAuthenticationProvider
-         = keycloakAuthenticationProvider();
+    @Throws(Exception::class)
+    fun configureGlobal(
+        auth: AuthenticationManagerBuilder
+    ) {
+        val keycloakAuthenticationProvider = keycloakAuthenticationProvider()
         keycloakAuthenticationProvider.setGrantedAuthoritiesMapper(
-          new SimpleAuthorityMapper());
-        auth.authenticationProvider(keycloakAuthenticationProvider);
+            SimpleAuthorityMapper()
+        )
+        auth.authenticationProvider(keycloakAuthenticationProvider)
     }
- 
+
     @Bean
-    public KeycloakSpringBootConfigResolver KeycloakConfigResolver() {
-        return new KeycloakSpringBootConfigResolver();
+    fun KeycloakConfigResolver(): KeycloakSpringBootConfigResolver {
+        return KeycloakSpringBootConfigResolver()
     }
- 
+
     @Bean
-    @Override
-    protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
-        return new RegisterSessionAuthenticationStrategy(new SessionRegistryImpl());
+    override fun sessionAuthenticationStrategy(): SessionAuthenticationStrategy {
+        return RegisterSessionAuthenticationStrategy(SessionRegistryImpl())
     }
- 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        super.configure(http);
+
+    @Throws(Exception::class)
+    override fun configure(http: HttpSecurity) {
+        super.configure(http)
         http.authorizeRequests()
-          .antMatchers("/**").authenticated()
-          .anyRequest().permitAll();
+            .antMatchers("/**").authenticated()
+            .anyRequest().permitAll()
     }
 }

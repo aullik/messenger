@@ -1,37 +1,35 @@
-package com.cloudapp.messenger;
+package com.cloudapp.messenger
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.commons.logging.LogFactory
+import org.springframework.boot.SpringApplication
+import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.context.annotation.Bean
+import javax.servlet.ServletContextEvent
+import javax.servlet.ServletContextListener
 
 @SpringBootApplication
-public class MessengerApplication {
-	private static Log logger = LogFactory.getLog(MessengerApplication.class);
+class MessengerApplication {
+    @Bean
+    protected fun listener(): ServletContextListener {
+        return object : ServletContextListener {
+            override fun contextInitialized(sce: ServletContextEvent) {
+                logger.info("ServletContext initialized")
+            }
 
-	@Bean
-	protected ServletContextListener listener() {
-		return new ServletContextListener() {
+            override fun contextDestroyed(sce: ServletContextEvent) {
+                logger.info("ServletContext destroyed")
+            }
+        }
+    }
 
-			@Override
-			public void contextInitialized(ServletContextEvent sce) {
-				logger.info("ServletContext initialized");
-			}
+    companion object {
+        private val logger = LogFactory.getLog(
+            MessengerApplication::class.java
+        )
 
-			@Override
-			public void contextDestroyed(ServletContextEvent sce) {
-				logger.info("ServletContext destroyed");
-			}
-
-		};
-	}
-	public static void main(String[] args) {
-		SpringApplication.run(MessengerApplication.class, args);
-	}
-
+        @JvmStatic
+        fun main(args: Array<String>) {
+            SpringApplication.run(MessengerApplication::class.java, *args)
+        }
+    }
 }
